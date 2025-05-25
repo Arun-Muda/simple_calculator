@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #eef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .calculator {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 260px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <h2>🧮 Calculator</h2>
+
+  <input id="first" type="number" placeholder="First number">
+  <input id="second" type="number" placeholder="Second number">
+
+  <select id="operation">
+    <option value="+">Add (+)</option>
+    <option value="-">Subtract (-)</option>
+    <option value="*">Multiply (×)</option>
+    <option value="/">Divide (÷)</option>
+  </select>
+
+  <button onclick="calculate()">Get Result</button>
+
+  <div class="result" id="output"></div>
+</div>
+
+<script>
+  function calculate() {
+    const a = parseFloat(document.getElementById('first').value);
+    const b = parseFloat(document.getElementById('second').value);
+    const op = document.getElementById('operation').value;
+    let result = '';
+
+    if (isNaN(a) || isNaN(b)) {
+      result = '⚠️ Enter both numbers!';
+    } else if (op === '/' && b === 0) {
+      result = '❌ Cannot divide by zero.';
+    } else {
+      result = eval(`${a} ${op} ${b}`);
+    }
+
+    document.getElementById('output').textContent = 'Result: ' + result;
+  }
+</script>
+
+</body>
+</html>
